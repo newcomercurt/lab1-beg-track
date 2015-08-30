@@ -1,5 +1,4 @@
 'use strict';
-
 /* LAB 1: A Trip to Woodland Park Zoo
 
  Welcome to Lab 1 :)
@@ -44,9 +43,9 @@ function assert(expression, failureMessage) {
  this file a couple times to see how they work, comment them out.
  That will help later when you run jscs.
 */
-
-assert(1 === 1, '1 equals 1 - this assert will pass.');
-assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.');
+var one = 1;
+assert(one === 1, '1 equals 1 - this assert will pass.');
+assert(one === 2, 'this is an example of a failing assertion. 1 does not equal 2.');
 
 /* ===========================================================================
 ------------------Assertions (8 points total)---------------------------------
@@ -58,6 +57,14 @@ assert(1 === 2, 'this is an example of a failing assertion. 1 does not equal 2.'
  zoo-themed.  Make one pass and one fail. In the failure message, describe why
  it failed.
 */
+
+/*The code below works because the first assertion checks to see if the croc is
+part of ther zoo animals in the array location 0, the second assertion fails as
+a cow is not a zoo animal and it is not in the array at all
+*/
+var zooAnimals = ['crocodile', 'alligator', 'polar bear'];
+assert(zooAnimals[0] === 'crocodile', 'this is a zoo animal');
+assert(zooAnimals === 'cow', 'this is not true as a cow is not a zoo animal');
 
 //your code goes here
 
@@ -79,14 +86,23 @@ var sentence2 = 'Come over here so you can scratch my belly.';
 
 // TODO: part #1: use a for loop to replace the words in sentence 1 with
 // 'chirp' (10 points)
-
 // your code goes here
 
+sentence1 = sentence1.split(' ');
+for (var i = 0; i < sentence1.length; i++) {
+  sentence1[i] = 'chirp';
+}
+sentence1 = sentence1.join(' ') + ('.');
 // TODO: part #2: use a while or do-while loop to replace the words in sentence 2
 // with 'chirp' (10 points)
-
 // your code goes here
-
+sentence2 = sentence2.split(' ');
+var i = 0;
+while (i < sentence2.length) {
+  sentence2[i] = 'chirp';
+  i++;
+}
+sentence2 = sentence2.join(' ') + ('.');
 // Leave these assertions as-is! If they pass, your code works.
 assert(sentence1 === 'chirp chirp chirp.', 'sentence 1 should have 3 chirps');
 assert(sentence2 === 'chirp chirp chirp chirp chirp chirp chirp chirp chirp.',
@@ -108,6 +124,10 @@ var nextAnimal;
 // Assign one of your favorite animals to nextAnimal using Math.random() to pick
 
 // your code goes here
+var getRandomAnimal = function() {
+  return favoriteAnimals[Math.floor(Math.random() * favoriteAnimals.length)];
+};
+var nextAnimal = getRandomAnimal();
 
 assert(nextAnimal, 'assign something to nextAnimal');
 
@@ -124,10 +144,10 @@ assert(nextAnimal, 'assign something to nextAnimal');
 // don't require quotes for the code to work. Remove the unnecessary quotes.
 
 var animalExhibitStats = {
-  'numberOpen': 13,
+  numberOpen: 13,
   'number closed': 2,
   'petting-zoo-open': true,
-  'mostPopular': 'Lucky the Emperor Penguin',
+  mostPopular: 'Lucky the Emperor Penguin',
   '2ndMostPopular': 'Dumbo the Depressed Donkey'
 };
 
@@ -138,7 +158,7 @@ var animalExhibitStats = {
  notation with dot notation wherever possible.
 */
 
-assert(animalExhibitStats['numberOpen'] === 13, 'there should be 13 open exhibits');
+assert(animalExhibitStats.numberOpen === 13, 'there should be 13 open exhibits');
 assert(animalExhibitStats['number closed'] === 2, 'there should be 2 closed exhibits');
 assert(animalExhibitStats['petting-zoo-open'], 'hey! =( i was promised meerkats!');
 assert(animalExhibitStats['2ndMostPopular'] === 'Dumbo the Depressed Donkey',
@@ -149,7 +169,7 @@ assert(animalExhibitStats['2ndMostPopular'] === 'Dumbo the Depressed Donkey',
 // Use the above examples to guide you.
 
 // your assert goes here
-
+assert(animalExhibitStats.mostPopular === 'Lucky the Emperor Penguin', 'this assertion failed');
 /* ==================================================================
 ----------------- Code Style (10 points) ----------------------------
 =====================================================================
